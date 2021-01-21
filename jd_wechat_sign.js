@@ -19,12 +19,10 @@ https:\/\/wq\.jd\.com\/bases\/jssdk\/GetWxJsApiSign url script-request-header ht
 [task_local]
 #京东粉丝专享
 10 0 * * * https://raw.githubusercontent.com/shylocks/Loon/main/jd_wechat_sign.js, tag=京东粉丝专享, img-url=https://raw.githubusercontent.com/yogayyy/Scripts/master/Icon/shylocks/jd_wechat_sign.jpg, enabled=true
-
 ================Loon==============
 [Script]
 http-request https:\/\/wq\.jd\.com\/bases\/jssdk\/GetWxJsApiSign tag=获取京东微信ck, script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_wechat_sign.js
 cron "10 0 * * *" script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_wechat_sign.js,tag=京东粉丝专享
-
 ===============Surge=================
 [Script]
 获取京东微信ck = type=http-request,pattern=^https:\/\/wq\.jd\.com\/bases\/jssdk\/GetWxJsApiSign,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/shylocks/Loon/main/jd_wechat_sign.js,script-update-interval=0
@@ -129,7 +127,6 @@ if (!$.isNode() && typeof $request !=='undefined') {
     })
     if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
     };
-    if(JSON.stringify(process.env).indexOf('GITHUB')>-1) process.exit(0)
   } else {
     let cookiesData = $.getdata('CookiesJD') || "[]";
     cookiesData = jsonParse(cookiesData);
