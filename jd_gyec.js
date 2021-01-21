@@ -75,6 +75,9 @@ function obj2param(obj) {
   await requireConfig()
   console.log(`您要兑换的商品名称为${exchangeName}`)
   for (let i = 0; i < cookiesArr.length; i++) {
+    	       if(val.reportArray){
+            this.projectReportSumNum = val.reportArray.length;
+          }
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
