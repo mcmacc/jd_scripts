@@ -49,8 +49,8 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  `ucp4UudBqMcbT-J9e_xx-UMQA96VZPICgwBY@oMZeX7Mco4wGBrBiNLAl-NqgPbNWoqjpA9BIHLl_7Z2uC4Bt@oMZeX-MZptlSCucyZbF1rd5yz0h4UH_HSfqqFbMlZzbejPBD@oMZeXeAepdgCULEwYuYjqyz95kfX8nlv4zJZcfydoErpcyMu`,
-  `ucp4UudBqMcbT-J9e_xx-UMQA96VZPMNgwJW@oMZeX7Mco4wGBrBiNLAl-NqgPbNWoqjpA9BIHLl_7Z2uC4Bt@oMZeX-MZptlSCucyZbF1rd5yz0h4UH_HSfqqFbMlZzbejPBD@oMZeXeAepdgCULEwYuYjqyz95kfX8nlv4zJZcfydoErpcyMu`,
+  `ucp4UudBqMcbT-J9e_xx-UMQA96VZPICgwBY@oMZeX7Mco4wGBrBiNLAl-NqgPbNWoqjpA9BIHLl_7Z2uC4Bt@oMZeGJ8Q3ssja5hkb88ysz1myVkiBAsZmXvj1VVm0_HgAmA@udHn3lOfPCqCnVvmgzY8s7L3GtTvpSi9zyMcRoTjqfxLhw`,
+  `ucp4UudBqMcbT-J9e_xx-UMQA96VZPMNgwJW@oMZeX7Mco4wGBrBiNLAl-NqgPbNWoqjpA9BIHLl_7Z2uC4Bt@oMZeGJ8Q3ssja5hkb88ysz1myVkiBAsZmXvj1VVm0_HgAmA@udHn3lOfPCqCnVvmgzY8s7L3GtTvpSi9zyMcRoTjqfxLhw`,
 ];
 !(async () => {
   await requireConfig();
@@ -493,7 +493,7 @@ function taskPostUrl(function_id, body = {}, function_id2) {
       "origin": "https://h5.m.jd.com",
       "referer": "https://h5.m.jd.com/",
       'Content-Type': 'application/x-www-form-urlencoded',
-      "User-Agent":  "jdapp;android;9.3.8;10;837366564626932-673564646035326;network/4g;model/IN2010;addressid/853148051;aid/87fedb9b7edd05b;oaid/;osVer/29;appBuild/86571;partner/oppo;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36"
+      "User-Agent": "jdapp;android;9.3.8;10;837366564626932-673564646035326;network/4g;model/IN2010;addressid/853148051;aid/87fedb9b7edd05b;oaid/;osVer/29;appBuild/86571;partner/oppo;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36"
     }
   }
 }
