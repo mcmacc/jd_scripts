@@ -65,6 +65,7 @@ let helpCode = []
     return;
   }
   $.temp = [];
+  await updateShareCodesCDN();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -589,7 +590,6 @@ async function doHelp() {
   }
   // await updateShareCodes();
   // if (!$.updatePkActivityIdRes) await updateShareCodesCDN();
-  await updateShareCodesCDN();
   if ($.updatePkActivityIdRes && $.updatePkActivityIdRes['shareCodes']) tempCode = $.updatePkActivityIdRes['shareCodes'];
   console.log(`是否大于当天九点🕘:${nowTime > new Date(nowTime).setHours(9, 0, 0, 0)}`)
   //当天大于9:00才从API里面取收集的助力码
@@ -858,10 +858,10 @@ function updateShareCodes(url = 'https://raw.githubusercontent.com/LXK9301/updat
     })
   })
 }
-function updateShareCodesCDN(url = 'https://gitee.com/lxk0301/updateTeam/raw/master/jd_shareCodes.json') {
+function updateShareCodesCDN(url = 'https://gitee.com/lxk0301/updateTeam/raw/master/shareCodes/jd_shareCodes.json') {
   return new Promise(resolve => {
     //https://cdn.jsdelivr.net/gh/LXK9301/updateTeam@master/jd_shareCodes.json
-    $.get({url}, async (err, resp, data) => {
+    $.get({url , headers:{"User-Agent": "jdapp;android;9.3.8;10;837366564626932-673564646035326;network/4g;model/IN2010;addressid/853148051;aid/87fedb9b7edd05b;oaid/;osVer/29;appBuild/86571;partner/oppo;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36"}}, async (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
