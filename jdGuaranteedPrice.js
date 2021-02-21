@@ -5,24 +5,14 @@
  * 所以订单下单时间以及发货、收货时间，也可能占用很多天，60天内的订单进行保价是正常的。
  * 没进行过保价的60天内的订单。查询一次，不符合保价的，不会再次申请保价。
  *
- *
+ * 支持云端cookie使用
  * 修改自：https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_priceProtect.js
+ * 修改自：https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js
  *
  * 京东保价页面脚本：https://static.360buyimg.com/siteppStatic/script/priceskus-phone.js
  *
  *
- * > 同时支持使用 NobyDa 与 domplin 脚本的京东 cookie
- * > https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
- * > https://raw.githubusercontent.com/dompling/Script/master/jd/JD_extra.js
- *
- * # Surge
- * Tasks: 京东保价 = type=cron,cronexp=3 0 * * *,script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js,wake-system=true
- *
- * # QuanX
- * 3 0 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js, tag=京东保价, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdGuaranteedPrice.png
- *
- * # Loon
- * cron "3 0 * * *" script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdGuaranteedPrice.js
+ * > iOS同时支持使用 NobyDa 与 domplin 脚本的京东 cookie
  *
  */
 
@@ -30,18 +20,19 @@ const $ = new Env('京东保价');
 
 const selfDomain = 'https://msitepp-fm.jd.com/';
 const unifiedGatewayName = 'https://api.m.jd.com/';
-
-let cookies = [];
-$.getData('CookieJD') && cookies.push($.getData('CookieJD'));
-$.getData('CookieJD2') && cookies.push($.getData('CookieJD2'));
-
-const extraCookies = JSON.parse($.getData('CookiesJD') || '[]').map(
-  (item) => item.cookie
-);
-cookies = Array.from(new Set([...cookies, ...extraCookies]));
+const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+let cookiesArr = [];
+if ($.isNode()) {
+  Object.keys(jdCookieNode).forEach((item) => {
+    cookiesArr.push(jdCookieNode[item])
+  })
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+} else {
+  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+}
 
 !(async () => {
-  if (!cookies[0]) {
+  if (!cookiesArr[0]) {
     $.msg(
       $.name,
       '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取',
@@ -52,9 +43,9 @@ cookies = Array.from(new Set([...cookies, ...extraCookies]));
     );
     return;
   }
-  for (let i = 0; i < cookies.length; i++) {
-    if (cookies[i]) {
-      $.cookie = cookies[i];
+  for (let i = 0; i < cookiesArr.length; i++) {
+    if (cookiesArr[i]) {
+      $.cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(
         $.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]
       );
@@ -149,7 +140,7 @@ function getHyperParams() {
         Connection: 'keep-alive',
         Cookie: $.cookie,
         'User-Agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
+          'Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36',
         'Accept-Language': 'zh-cn',
         Referer: 'https://ihelp.jd.com/',
         'Accept-Encoding': 'gzip, deflate, br',
