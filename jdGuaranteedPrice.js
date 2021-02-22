@@ -140,7 +140,7 @@ function getHyperParams() {
         Connection: 'keep-alive',
         Cookie: $.cookie,
         'User-Agent':
-          'Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36',
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
         'Accept-Language': 'zh-cn',
         Referer: 'https://ihelp.jd.com/',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -448,7 +448,7 @@ function taskUrl(functionid, body) {
       Connection: 'keep-alive',
       Referer: 'https://msitepp-fm.jd.com/rest/priceprophone/priceProPhoneMenu',
       'User-Agent':
-        'Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36',
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
       Cookie: $.cookie,
     },
     body: body ? `body=${JSON.stringify(body)}` : undefined,
@@ -485,7 +485,7 @@ function totalBean() {
         Cookie: $.cookie,
         Referer: 'https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2',
         'User-Agent':
-          'Mozilla/5.0 (Linux; Android 10; IN2010 Build/QKQ1.191222.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36',
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
       },
     };
     $.post(options, (err, resp, data) => {
